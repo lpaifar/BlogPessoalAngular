@@ -1,8 +1,8 @@
+import { environment } from './../../environments/environment.prod';
+import { Router } from '@angular/router';
 import { AuthService } from './../service/auth.service';
 import { UserLogin } from './../model/UserLogin';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-entrar',
   templateUrl: './entrar.component.html',
@@ -25,6 +25,12 @@ export class EntrarComponent implements OnInit {
   {
     this.auth.entrar(this.userLogin).subscribe((resp: UserLogin)=>{
       this.userLogin = resp
+
+      environment.token = this.userLogin.token
+      environment.nome = this.userLogin.nome
+      environment.foto = this.userLogin.foto
+      environment.id = this.userLogin.id
+
       this.router.navigate(['/inicio'])
     }, erro => {
       if (erro.status == 500){

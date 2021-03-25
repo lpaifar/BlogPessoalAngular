@@ -1,6 +1,6 @@
-import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +11,6 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
   foto = environment.foto
-  token = environment.token
-
 
   constructor(
     private router: Router
@@ -26,7 +24,7 @@ export class MenuComponent implements OnInit {
     environment.token = ''
     environment.nome = ''
     environment.foto = ''
-    environment.id = 0 
+    environment.id = 0
   }
 
 }

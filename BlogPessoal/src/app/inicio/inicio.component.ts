@@ -26,6 +26,9 @@ export class InicioComponent implements OnInit {
   user: User = new User()
   idUser = environment.id
 
+  key = 'data'
+  reverse = true
+
   constructor(
     private router: Router,
     private PostagemService: PostagemService,
@@ -35,8 +38,10 @@ export class InicioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scroll(0,0)
+
     if(environment.token == ''){
-      alert('Sua seção expirou, faça login novamente.')
+      this.alertas.showAlertInfo('Sua seção expirou, faça login novamente.')
       this.router.navigate(['/entrar'])
     }
 

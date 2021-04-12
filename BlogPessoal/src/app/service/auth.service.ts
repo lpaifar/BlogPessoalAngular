@@ -10,33 +10,37 @@ import { UserLogin } from '../model/UserLogin';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
-
-   }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   entrar(userLogin: UserLogin): Observable<UserLogin>{
-      return this.http.post<UserLogin>('http://localhost:8080/usuarios/logar', userLogin)
+    return this.http.post<UserLogin>('http://localhost:8080/usuarios/logar', userLogin)
   }
 
   cadastrar(user: User): Observable<User>{
-      return this.http.post<User>('http://localhost:8080/usuarios/cadastrar', user)
-  }
-
-  atualizar(user: User): Observable<User>{
-    return this.http.put<User>('http://localhost:8080/usuarios', user, {headers:{'Authorization':environment.token}})
+    return this.http.post<User>('http://localhost:8080/usuarios/cadastrar', user)
   }
 
   getByIdUser(id: number): Observable<User>{
-    return this.http.get<User>(`http://localhost:8080/usuarios/${id}`, {headers:{'Authorization':environment.token}})
+    return this.http.get<User>(`http://localhost:8080/usuarios/${id}`, {headers:{'Authorization': environment.token}})
   }
 
   logado(){
-    let ok = false
+    let ok: boolean = false
 
     if (environment.token != ''){
-        ok = true
+      ok = true
     }
+    return ok
+  }
 
+  adm(){
+    let ok: boolean = false
+
+    if (environment.tipo == 'adm'){
+      ok = true
+    }
     return ok
   }
 }

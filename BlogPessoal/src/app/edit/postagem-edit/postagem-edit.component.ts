@@ -1,10 +1,11 @@
-import { TemaService } from './../../service/tema.service';
-import { Tema } from './../../model/Tema';
-import { environment } from './../../../environments/environment.prod';
+import { AlertasService } from './../../service/alertas.service';
+import { TemaService } from 'src/app/service/tema.service';
+import { Tema } from 'src/app/model/Tema';
 import { PostagemService } from './../../service/postagem.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Postagem } from './../../model/Postagem';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-postagem-edit',
@@ -24,10 +25,10 @@ export class PostagemEditComponent implements OnInit {
     private route: ActivatedRoute,
     private postagemService: PostagemService,
     private temaService: TemaService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
-
     window.scroll(0,0)
 
     if(environment.token == ''){
@@ -40,19 +41,19 @@ export class PostagemEditComponent implements OnInit {
   }
 
   findByIdPostagem(id: number){
-    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem)=> {
+    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem)=>{
       this.postagem = resp
     })
   }
 
   findByIdTema(){
-    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema)=> {
+    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) =>{
       this.tema = resp
     })
   }
 
   findAllTemas(){
-    this.temaService.getAllTema().subscribe((resp: Tema[])=> {
+    this.temaService.getAllTema().subscribe((resp: Tema[])=>{
       this.listaTemas = resp
     })
   }
@@ -61,9 +62,9 @@ export class PostagemEditComponent implements OnInit {
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
 
-    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem)=> {
+    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem)=>{
       this.postagem = resp
-      alert('Post atualizado com sucesso!')
+      this.alertas.showAlertSuccess('Postagem atualizada com sucesso!')
       this.router.navigate(['/inicio'])
     })
   }

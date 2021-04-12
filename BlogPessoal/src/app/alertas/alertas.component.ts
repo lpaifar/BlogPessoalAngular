@@ -1,5 +1,5 @@
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Component, Input, OnInit } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-alertas',
@@ -9,13 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AlertasComponent implements OnInit {
 
   @Input() message: string
-  @Input() tipo: string = 'success'
+  @Input() type: string = 'success'
+
 
   constructor(
     public modal: BsModalRef
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
+
   }
 
   onClose(){

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common'
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { OrderModule } from 'ngx-order-pipe'
+import { OrderModule } from 'ngx-order-pipe';
 
 
 import { AppComponent } from './app.component';
